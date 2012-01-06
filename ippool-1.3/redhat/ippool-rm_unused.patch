@@ -1,0 +1,15 @@
+diff -Naur openl2tp-0.11.orig/plugins/Makefile openl2tp-0.11/plugins/Makefile
+diff -Naur ippool-0.5.orig/usl/Makefile ippool-0.5/usl/Makefile
+--- ippool-0.5.orig/usl/Makefile	2006-04-16 15:34:52.000000000 +0100
++++ ippool-0.5/usl/Makefile	2006-04-16 15:36:20.000000000 +0100
+@@ -37,8 +37,8 @@
+ 			$(CC) -c $(CFLAGS) $< -o $@
+ 
+ install:		all
+-			$(INSTALL) -d $(DESTDIR)$(SYS_LIBDIR)
+-			$(INSTALL) libusl.a $(DESTDIR)$(SYS_LIBDIR)
++#			$(INSTALL) -d $(DESTDIR)$(SYS_LIBDIR)
++#			$(INSTALL) libusl.a $(DESTDIR)$(SYS_LIBDIR)
+ 
+ checkin:		clean
+ 			ci -u -q Makefile $(USL_SRCS.c) $(USL_SRCS.h) $(USL_SRCS_TEST.c)

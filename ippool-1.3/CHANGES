@@ -1,0 +1,63 @@
+# -*- indented-text -*- # 
+
+This file is a history of changes made in each release.
+
+----------------------------------------------------------------------------
+V1.3, 09-APR-2008
+
+Fix version number. Versions 1.1 and 1.2 advertised themselves as 1.0.
+
+----------------------------------------------------------------------------
+V1.2, 21-MAR-2008
+
+Fix the ppp dependency rule in the Debian control file to handle the
+fact that Debian/Ubuntu use a suffix name in the ppp package version
+which breaks our =2.4.4 dependency and prevents clean package install
+on some systems. We now use a combined >=2.4.4 and <2.4.5 rule instead
+of =2.4.4.
+
+----------------------------------------------------------------------------
+V1.1, 24-FEB-2008
+
+- Build with new USL list code which includes memory barriers. This
+  prevents gcc function order optimisations from causing problems.
+  
+- Enable compiler optimisation.
+
+- Turn off compiler warnings when compiling rpcgen code.
+
+----------------------------------------------------------------------------
+V1.0, 11-FEB-2008
+
+- Fix compiler warning (gcc-4.x).
+
+- Add RPM build.
+
+----------------------------------------------------------------------------
+V0.4, 03-NOV-2004
+
+- Avoid use of linux __u8, __u16, __u32 types. Use standard uintN_t types 
+  instead. This change is required because newer glibc header files warn 
+  when some newer linux kernel headers are included by application code.
+
+- Change RPC interfaces to use the recently registered official RPC 
+  program numbers rather than numbers in Sun's "experimental" range.
+  Be sure to upgrade client (management) apps in sync with ippoold.
+
+----------------------------------------------------------------------------
+V0.3, 19-OCT-2004
+
+- Fix build problems in some environments and improve build configurability
+  (makefile changes).
+
+----------------------------------------------------------------------------
+V0.2, 15-OCT-2004
+
+- Fix RPC requestor address check. ippoold was testing an uninitialized
+  RPC variable, causing requests to be rejected unless -R was used.
+
+----------------------------------------------------------------------------
+V0.1, 12-SEP-2004
+
+- Initial release. 
+

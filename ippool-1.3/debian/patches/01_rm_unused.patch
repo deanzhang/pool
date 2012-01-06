@@ -1,0 +1,22 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_rm_unused.patch.dpatch by  <jchapman@katalix.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Remove unneeded installed files
+
+@DPATCH@
+
+diff -Naur ippool-1.0.orig/usl/Makefile ippool-1.0/usl/Makefile
+--- ippool-1.0.orig/usl/Makefile	2006-04-16 15:34:52.000000000 +0100
++++ ippool-1.0/usl/Makefile	2006-04-16 15:36:20.000000000 +0100
+@@ -37,8 +37,8 @@
+ 			$(CC) -c $(CFLAGS) $< -o $@
+ 
+ install:		all
+-			$(INSTALL) -d $(DESTDIR)$(SYS_LIBDIR)
+-			$(INSTALL) libusl.a $(DESTDIR)$(SYS_LIBDIR)
++#			$(INSTALL) -d $(DESTDIR)$(SYS_LIBDIR)
++#			$(INSTALL) libusl.a $(DESTDIR)$(SYS_LIBDIR)
+ 
+ checkin:		clean
+ 			ci -u -q Makefile $(USL_SRCS.c) $(USL_SRCS.h) $(USL_SRCS_TEST.c)

@@ -1,0 +1,15 @@
+# Settings for the Ippool daemon.
+# IPPOOLDARGS= :  any extra command-line startup arguments for crond
+#	-R              - allow remote management using RPC
+#	-d nnn          - set debug trace mask to nnn
+#       -L log-facility - set syslog facility (default LOG_DAEMON) 
+#
+# IPPOOLD_CONFIG_FILE= : a file containing L2TP config that
+#                          is loaded when ippoold starts up.
+
+IPPOOLDARGS=
+
+# Config file to load at ippoold startup
+IPPOOLD_CONFIG_FILE=
+
+

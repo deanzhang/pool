@@ -1,0 +1,98 @@
+#! /bin/bash
+#
+# ippoold          Start/Stop the Ippool daemon.
+#
+# chkconfig: 2345 57 76
+# description: Ippool is a simple IP address pool manager with an RPC interface.
+# processname: ippoold
+# config: /etc/sysconfig/ippoold
+# pidfile: /var/run/ippoold.pid
+
+# Source function library.
+. /etc/init.d/functions
+. /etc/sysconfig/ippoold
+ 
+# See how we were called.
+  
+prog="ippoold"
+
+start() {
+	echo -n $"Starting $prog: "	
+        if [ -e /var/lock/subsys/ippoold ]; then
+	    if [ -e /var/run/ippoold.pid ] && [ -e /proc/`cat /var/run/ippoold.pid` ]; then
+		echo -n $"cannot start ippoold: ippoold is already running.";
+		failure $"cannot start ippoold: ippoold already running.";
+		echo
+		return 1
+	    fi
+	fi
+	daemon ippoold $IPPOOLDARGS
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then
+	    touch /var/lock/subsys/ippoold
+	    if [ -n "$IPPOOLD_CONFIG_FILE" ]; then
+		sleep 1
+		echo $"Restoring saved ippoold configuration..."
+		/usr/bin/ippoolconfig config restore file=$IPPOOLD_CONFIG_FILE
+		RETVAL=$?
+	    fi
+	fi
+	return $RETVAL
+}
+
+stop() {
+	echo -n $"Stopping $prog: "
+        if [ ! -e /var/lock/subsys/ippoold ]; then
+	    echo -n $"cannot stop ippoold: ippoold is not running."
+	    failure $"cannot stop ippoold: ippoold is not running."
+	    echo
+	    return 1;
+	fi
+	killproc ippoold
+	rm -f /var/run/ippoold.pid
+        rm -f /var/lock/subsys/ippoold
+	return 0
+}	
+
+rhstatus() {
+	status ippoold
+}	
+
+restart() {
+  	stop
+	start
+}	
+
+reload() {
+	echo -n $"Reloading ippool daemon configuration: "
+	stop
+	start
+	RETVAL=$?
+	echo
+	return $RETVAL
+}	
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  reload)
+  	reload
+	;;
+  status)
+  	rhstatus
+	;;
+  condrestart)
+  	[ -f /var/lock/subsys/ippoold ] && restart || :
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|reload|restart|condrestart}"
+	exit 1
+esac

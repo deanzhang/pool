@@ -1,0 +1,19 @@
+Source: ippool
+Section: net
+Priority: optional
+Maintainer: James Chapman <jchapman@katalix.com>
+Build-Depends: debhelper (>= 5), ppp-dev (>= 2.4.4), ppp-dev (<< 2.4.5), portmap, libreadline5-dev, libncurses5-dev, flex, bison
+Standards-Version: 3.7.2
+
+Package: ippool
+Architecture: any
+Depends: ${shlibs:Depends}, ppp (>= 2.4.4), ppp (<< 2.4.5), portmap, libreadline5, libncurses5
+Description: An IP address pool manager
+ IpPool is implemented as a separate server daemon to allow any application
+ to use its address pools. This makes it possible to define address
+ pools that are shared by PPP, L2TP, PPTP etc. It may be useful in some VPN
+ server setups.
+ .
+ IpPool comes with a command line management application, ippoolconfig
+ to manage and query address pool status. A pppd plugin is supplied which
+ allows pppd to request IP addresses from ippoold.

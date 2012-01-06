@@ -1,0 +1,33 @@
+ippool (1.3-1) unstable; urgency=low
+
+  * Fix version number. Versions 1.1 and 1.2 advertised themselves as
+    1.0.
+
+ -- James Chapman <jchapman@katalix.com>  Wed, 09 Apr 2008 19:35:32 +0000
+
+ippool (1.2-1) unstable; urgency=low
+
+  * Fix the ppp dependency rule in the Debian control file to handle
+    the fact that Debian/Ubuntu use a suffix name in the ppp package
+    version which breaks our =2.4.4 dependency and prevents clean
+    package install on some systems. We now use a combined >=2.4.4 and
+    <2.4.5 rule instead of =2.4.4.
+
+ -- James Chapman <jchapman@katalix.com>  Fri, 21 Mar 2008 21:05:43 +0000
+
+ippool (1.1-1) unstable; urgency=low
+ 
+  * Build with new USL list management code which includes memory
+    barriers. This prevents gcc function order optimisations from causing
+    problems.
+  
+  * Enable compiler optimisation.
+  
+ -- James Chapman <jchapman@katalix.com>  Sun, 24 Feb 2008 15:10:14 +0000
+
+ippool (1.0-1) unstable; urgency=low
+ 
+  * Initial release
+ 
+ -- James Chapman <jchapman@katalix.com>  Sun, 10 Feb 2008 13:05:14 +0000
+
